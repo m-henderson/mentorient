@@ -5,8 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Tenant Index</h2>
+<nav>
+    <hr/>
+        <a asp-controller="Tenants" asp-action="New">New Tenant</a>
+    <hr/>
+</nav>
 @if(!Model.Any())
 {
-    <h2>You have not created any tenant</h2>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Hold Up!</strong> You do not have any tenants yet.
+    </div>
+}
+@foreach (var tenant in Model)
+{
+    <h1>@tenant.Id</h1>
+    <h2>@tenant.FirstName</h2>
 }
