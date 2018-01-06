@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mentorient.Controllers
 {
-    public class TenantController : Controller
+    public class TenantsController : Controller
     {
         public IActionResult Index()
         {
