@@ -17,8 +17,22 @@
         <strong>Hold Up!</strong> You do not have any tenants yet.
     </div>
 }
-@foreach (var tenant in Model)
-{
-    <h1>@tenant.Id</h1>
-    <h2>@tenant.FirstName</h2>
-}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+                @foreach (var tenant in Model)
+                {
+                    <tr>
+                        <td>@tenant.Id</td>
+                        <td>@tenant.FirstName</td>    
+                    </tr>
+                    
+                }
+        </tbody>
+    </table>
