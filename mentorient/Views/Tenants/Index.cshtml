@@ -1,8 +1,12 @@
-﻿
+﻿@model IEnumerable<mentorient.Models.Tenant>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Tenant Index</h2>
-
+@if(!Model.Any())
+{
+    <h2>You have not created any tenant</h2>
+}
