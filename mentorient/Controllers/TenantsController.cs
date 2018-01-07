@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mentorient.Controllers
 {
+
     public class TenantsController : Controller
     {
         private ApplicationDbContext _context;
@@ -42,6 +43,15 @@ namespace mentorient.Controllers
             tenant.OwnerId = _userManager.GetUserId(User);
 
             _context.Tenants.Add(tenant);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            var tenant = _context.Tenants.SingleOrDefault(t => t.Id == id);
+            _context.Remove(tenant);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
