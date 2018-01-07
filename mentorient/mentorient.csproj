@@ -5,8 +5,14 @@
     <UserSecretsId>aspnet-mentorient-35EA0EB0-EEFB-4383-90C0-98DEAA855FF4</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20180107150542_AddApplicationUserNavigationPropToTenantModel.cs" />
+    <Compile Remove="Data\Migrations\20180107150542_AddApplicationUserNavigationPropToTenantModel.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
