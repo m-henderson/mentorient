@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using mentorient.Data;
 using mentorient.Models;
 using mentorient.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
 
 namespace mentorient.Controllers
 {
     public class TenantsController : Controller
     {
         private ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public TenantsController(ApplicationDbContext context)
+
+        public TenantsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -33,6 +37,9 @@ namespace mentorient.Controllers
 
         public IActionResult Save(Tenant tenant)
         {
+
+            tenant.OwnerId = _userManager.GetUserId(User);
+
             _context.Tenants.Add(tenant);
             _context.SaveChanges();
 

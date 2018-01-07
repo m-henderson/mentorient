@@ -9,13 +9,12 @@ namespace mentorient.Models
     public class Tenant
     {
         public int Id { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         [Phone]
         public int PhoneNumber { get; set; }
 
+        public string OwnerId { get; set; }
 
     }
 }
