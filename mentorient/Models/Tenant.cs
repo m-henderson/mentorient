@@ -13,6 +13,9 @@ namespace mentorient.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        [Phone]
+        public int PhoneNumber { get; set; }
+
 
     }
 }
