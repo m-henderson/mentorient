@@ -25,7 +25,8 @@ namespace mentorient.Controllers
 
         public IActionResult Index()
         {
-            var tenants = _context.Tenants.ToList();
+            var loggedInUser = _userManager.GetUserId(User);
+            var tenants = _context.Tenants.ToList().Where(usr => usr.OwnerId == loggedInUser);
             
             return View(tenants);
         }
