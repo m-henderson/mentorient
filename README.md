@@ -12,5 +12,11 @@ When the community sees fit (the community is you and I) then I will go ahead  a
 4. make sure you are on the master branch and run `git pull --rebase upstream master`. This will make sure you are up-to-date with the main repo. 
 5. Create a branch, fix or add something, commit your code, then create a pull request. 
 
+# Running on Dev Machine
+1. cd into the folder that contains mentorient.csproj
+2. `dotnet restore`
+3. `dotnet ef database update`
+4. `dotnet run`
+
 I have CI/CD setup on the server. so, if your pull request is merged, the server will test the build then push the code to production. 
 If you have anyquestions feel free to create an issue. 
