@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using mentorient.Data;
 using mentorient.Models;
 using mentorient.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace mentorient
 {
@@ -36,7 +38,13 @@ namespace mentorient
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            services.AddMvc(config => 
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));   
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
