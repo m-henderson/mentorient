@@ -10,14 +10,15 @@
         <a asp-controller="Tenants" asp-action="New">New Tenant</a>
     <hr/>
 </nav>
-@if(!Model.Any())
+@if (!Model.Any())
 {
     <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Hold Up!</strong> You do not have any tenants yet.
     </div>
 }
-
+else
+{
     <table class="table table-striped">
         <thead>
         <tr>
@@ -27,14 +28,17 @@
         </tr>
         </thead>
         <tbody>
-                @foreach (var tenant in Model)
-                {
-                    <tr>
-                        <td>@tenant.Id</td>
-                        <td>@tenant.FirstName  @tenant.LastName</td>    
-                        <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a></td>
-                    </tr>
+        @foreach (var tenant in Model)
+        {
+            <tr>
+                <td>@tenant.Id</td>
+                <td>@tenant.FirstName  @tenant.LastName</td>    
+                <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a></td>
+            </tr>
                     
-                }
+        }
         </tbody>
     </table>
+}
+
+    
