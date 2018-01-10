@@ -9,7 +9,7 @@
     <title>@ViewData["Title"] - mentorient</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cosmo.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">mentorient</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Mentorient</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -59,31 +59,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2018 - Mentorient</p>
-                </div>
-                <div class="col-md-6">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                                <div class="col-lg-10">
-                                    <textarea class="form-control" rows="3" id="textArea"></textarea>
-                                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                                    <button class="btn btn-info">Submit</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>            
+            
         </footer>
     </div>
 
