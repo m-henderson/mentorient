@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using mentorient.Data;
 using mentorient.Models;
 using mentorient.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace mentorient.Controllers
 {
-
+    [Authorize]
     public class TenantsController : Controller
     {
         private ApplicationDbContext _context;
