@@ -8,6 +8,7 @@ using mentorient.Models;
 using mentorient.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace mentorient.Controllers
 {
@@ -26,8 +27,10 @@ namespace mentorient.Controllers
 
         public IActionResult Index()
         {
-            var loggedInUser = _userManager.GetUserId(User);
-            var tenants = _context.Tenants.ToList().Where(usr => usr.OwnerId == loggedInUser);
+            var userId = _userManager.GetUserId(User);
+            var tenants = _context.Users.Include(usr => usr.Tenants)
+                .Single(usr => usr.Id == userId)
+                .Tenants;
             
             return View(tenants);
         }
@@ -40,8 +43,8 @@ namespace mentorient.Controllers
         public IActionResult Save(Tenant tenant)
         {
 
-            tenant.OwnerId = _userManager.GetUserId(User);
-
+            var userId = _userManager.GetUserId(User);
+            _context.Users.Single(usr => usr.Id == userId).Tenants.Add(tenant);
             _context.Tenants.Add(tenant);
             _context.SaveChanges();
 
