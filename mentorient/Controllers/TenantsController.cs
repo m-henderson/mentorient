@@ -9,6 +9,7 @@ using mentorient.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace mentorient.Controllers
@@ -26,12 +27,17 @@ namespace mentorient.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
             var userId = _userManager.GetUserId(User);
             var tenants = _context.Users.Include(usr => usr.Tenants)
                 .Single(usr => usr.Id == userId)
                 .Tenants;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tenants = tenants.Where(t => t.FirstName.Contains(searchString)).ToList();
+            }
             
             return View(tenants);
         }
