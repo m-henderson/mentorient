@@ -60,5 +60,11 @@ namespace mentorient.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Details(int? id)
+        {
+            var tenant = _context.Tenants.SingleOrDefault(t => t.Id == id);
+            return View(tenant);
+        }
     }
 }

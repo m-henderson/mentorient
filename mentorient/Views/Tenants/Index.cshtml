@@ -33,7 +33,7 @@ else
             <tr>
                 <td>@tenant.Id</td>
                 <td>@tenant.FirstName  @tenant.LastName</td>    
-                <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a></td>
+                <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a> | <a asp-action="Details" asp-route-id="@tenant.Id">Details</a></td>
             </tr>
                     
         }
