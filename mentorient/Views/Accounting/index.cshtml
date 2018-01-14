@@ -1,2 +1,42 @@
+@model IEnumerable<mentorient.Models.Accounting.Entry>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Accounting</h1>
-<p>This page is coming soon. This is where you will manage the accounting aspect of your cashflow.</p>
+<nav>
+    <hr/>
+    <a asp-controller="Accounting" asp-action="Create">New Entry</a>
+    <hr/>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Tenant</th>
+        <th>Date Due</th>
+        <th>Date Paid</th>
+        <th>Description</th>
+        <th>Amount Due</th>
+        <th>Amount Paid</th>
+        <th>Amount Remaining</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var entry in Model)
+    {
+        <tr>
+            <td></td>
+            <td>@entry.DateDue</td>
+            <td>@entry.DatePaid</td>
+            <td>@entry.Description</td>
+            <td>@entry.AmountDue</td>
+            <td>@entry.AmountPaid</td>
+            <td>@entry.AmountRemaining</td>
+        </tr>
+                    
+    }
+    </tbody>
+</table>

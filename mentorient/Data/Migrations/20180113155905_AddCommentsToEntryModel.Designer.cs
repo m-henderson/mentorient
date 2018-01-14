@@ -11,9 +11,10 @@ using System;
 namespace mentorient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180113155905_AddCommentsToEntryModel")]
+    partial class AddCommentsToEntryModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +29,6 @@ namespace mentorient.Data.Migrations
                     b.Property<double>("AmountDue");
 
                     b.Property<double>("AmountPaid");
-
-                    b.Property<double>("AmountRemaining");
 
                     b.Property<string>("Comments");
 
