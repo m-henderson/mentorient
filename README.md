@@ -6,6 +6,9 @@ this project is very new and is great for first time or long time contributors. 
 When the community sees fit (the community is you and I) then I will go ahead  and route the main domain name to the application so that consumers can start using the application. 
 
 # Contributing
+
+come chat with contributors https://gitter.im/mentorient/Lobby
+
 1. fork the application 
 2. clone the app to your commputer `git clone https://github.com/your-user-name/mentorient`
 3. run `git remote add upstream https://github.com/mentorient/mentorient`
