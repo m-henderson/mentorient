@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using mentorient.Models.Accounting;
 
 namespace mentorient.Models
 {
@@ -36,5 +37,10 @@ namespace mentorient.Models
         [Required]
         public string State { get; set; }
         public string Country { get; set; }
+
+        public virtual ICollection<Entry>  Entries { get; set; }
+        = new List<Entry>();
+
+        
     }
 }

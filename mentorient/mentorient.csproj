@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20180107150542_AddApplicationUserNavigationPropToTenantModel.cs" />
     <Compile Remove="Data\Migrations\20180107150542_AddApplicationUserNavigationPropToTenantModel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180113081628_TenantNavigationProp.cs" />
+    <Compile Remove="Data\Migrations\20180113081628_TenantNavigationProp.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180113082809_CLean.cs" />
+    <Compile Remove="Data\Migrations\20180113082809_CLean.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180113082950_AddTenantsTo.cs" />
+    <Compile Remove="Data\Migrations\20180113082950_AddTenantsTo.Designer.cs" />
   </ItemGroup>
 
 
