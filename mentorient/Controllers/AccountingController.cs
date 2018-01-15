@@ -35,8 +35,13 @@ namespace mentorient.Controllers
 
         public IActionResult Create()
         {
+            var userId = _userManager.GetUserId(User);
             var vm = new AccountingEntryViewModel();
-            vm.Tenants = _context.Tenants.Select(a => new SelectListItem()
+            var tenants = _context.Users.Include(usr => usr.Tenants)
+                .Single(usr => usr.Id == userId)
+                .Tenants;
+
+            vm.Tenants = tenants.Select(a => new SelectListItem()
                 {
                     Value = a.Id.ToString(),
                     Text = a.FirstName + " " + a.LastName
