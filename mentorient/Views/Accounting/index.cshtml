@@ -18,7 +18,6 @@
         <th>Tenant</th>
         <th>Date Due</th>
         <th>Date Paid</th>
-        <th>Description</th>
         <th>Amount Due</th>
         <th>Amount Paid</th>
         <th>Amount Remaining</th>
@@ -28,10 +27,9 @@
     @foreach (var entry in Model)
     {
         <tr>
-            <td></td>
-            <td>@entry.DateDue</td>
-            <td>@entry.DatePaid</td>
-            <td>@entry.Description</td>
+            <td>@entry.TenantName</td>
+            <td>@entry.DateDue.ToShortDateString()</td>
+            <td>@entry.DatePaid.ToShortDateString()</td>
             <td>@entry.AmountDue</td>
             <td>@entry.AmountPaid</td>
             <td>@entry.AmountRemaining</td>

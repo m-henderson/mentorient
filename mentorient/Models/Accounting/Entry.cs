@@ -10,7 +10,7 @@ namespace mentorient.Models.Accounting
 {
     public class Entry
     {
-        
+
         public int Id { get; set; }
         public DateTime DateDue { get; set; }
         public DateTime DatePaid { get; set; }
@@ -18,14 +18,9 @@ namespace mentorient.Models.Accounting
         public double AmountDue { get; set; }
         public double AmountPaid { get; set; }
         public double AmountRemaining { get; set; }
-        public Tenant Tenant { get; set; }
+        public virtual Tenant Tenant { get; set; }
         public int TenantId { get; set; }
         public string Comments { get; set; }
-
-
-        
+        public string TenantName { get; set; }
     }
-
-
-   
 }
