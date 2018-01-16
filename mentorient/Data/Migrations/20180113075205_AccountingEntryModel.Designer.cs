@@ -11,9 +11,10 @@ using System;
 namespace mentorient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180113075205_AccountingEntryModel")]
+    partial class AccountingEntryModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,25 +32,13 @@ namespace mentorient.Data.Migrations
 
                     b.Property<double>("AmountRemaining");
 
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Comments");
-
                     b.Property<DateTime>("DateDue");
 
                     b.Property<DateTime>("DatePaid");
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("TenantId");
-
-                    b.Property<string>("TenantName");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TenantId");
 
                     b.ToTable("Entries");
                 });
@@ -251,18 +240,6 @@ namespace mentorient.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("mentorient.Models.Accounting.Entry", b =>
-                {
-                    b.HasOne("mentorient.Models.ApplicationUser")
-                        .WithMany("AccountingEntries")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("mentorient.Models.Tenant", "Tenant")
-                        .WithMany("Entries")
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("mentorient.Models.Tenant", b =>

@@ -16,7 +16,7 @@ namespace mentorient.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "Tenants");
             }
             return View();
         }

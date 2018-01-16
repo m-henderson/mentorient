@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using mentorient.Models;
+using mentorient.Models.Accounting;
 
 namespace mentorient.Data
 {
@@ -16,6 +17,7 @@ namespace mentorient.Data
         }
 
         public DbSet<Tenant> Tenants { get; set; }
+        public DbSet<Entry> Entries { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
