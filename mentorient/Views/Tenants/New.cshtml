@@ -1,4 +1,4 @@
-﻿
+﻿@model Tenant
 @{
     ViewData["Title"] = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,31 +8,37 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <form method="post" asp-action="Save" asp-controller="Tenants">
+            <div asp-validation-summary="All" class="text-Validation"></div>
             <div class="form-group">
+                <!--<div asp-validation-summary="All" class="text-danger"></div>-->
                 <div class="col-md-6">
-                    <label class=" control-label">First Name</label>
+                    <label asp-for="FirstName" class="control-label"></label>
                     <div class="">
-                        <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="tenants first name">
+                        <input asp-for="FirstName" class="form-control" placeholder="tenants first name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="control-label">Last Name</label>
+                    <label asp-for="LastName" class="control-label"></label>
                     <div class="">
-                        <input type="text" class="form-control" id="LastName" name="LastName" placeholder="tenants last name">
+                        <input asp-for="LastName" class="form-control" placeholder="tenants last name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label class="control-label">Address</label>
+                    <label asp-for="Address" class="control-label"></label>
                     <div class="">
-                        <input type="text" class="form-control" id="Address" name="Address" placeholder="tenants address">
+                        <input asp-for="Address" class="form-control" placeholder="tenants address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="control-label">Phone Number</label>
                     <div class="">
-                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNuber" placeholder="tenants phone number">
+                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="tenants phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -44,32 +50,36 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="control-label">Date of Birth</label>
+                    <label asp-for="DateOfBirth" class="control-label"></label>
                     <div class="">
-                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="tenants date of birth">
+                        <input asp-for="DateOfBirth" class="form-control" placeholder="tenants date of birth" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
 
-                    <label class="control-label">City</label>
+                    <label asp-for="City" class="control-label"></label>
                     <div class="">
-                        <input type="text" class="form-control" id="City" name="City" placeholder="tenants city">
+                        <input asp-for="City" class="form-control" placeholder="tenants city" />
+                        <span asp-validation-for="City" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="control-label">Postal Code/Zip</label>
+                    <label asp-for="ZipCode" class="control-label"></label>
                     <div class="">
-                        <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="tenants postal code/zip">
+                        <input asp-for="ZipCode" class="form-control" placeholder="tenants postal code/zip" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label class="control-label">State</label>
+                    <label asp-for="State" class="control-label">State</label>
                     <div class="">
-                        <input type="text" class="form-control" id="State" name="State" placeholder="tenants state">
+                        <input asp-for="State" class="form-control" placeholder="tenants state" />
+                        <span asp-validation-for="State" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">

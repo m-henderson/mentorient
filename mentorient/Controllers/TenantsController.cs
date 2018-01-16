@@ -49,13 +49,16 @@ namespace mentorient.Controllers
 
         public IActionResult Save(Tenant tenant)
         {
+            if (ModelState.IsValid)
+            {
+                var userId = _userManager.GetUserId(User);
+                _context.Users.Single(usr => usr.Id == userId).Tenants.Add(tenant);
+                _context.Tenants.Add(tenant);
+                _context.SaveChanges();
 
-            var userId = _userManager.GetUserId(User);
-            _context.Users.Single(usr => usr.Id == userId).Tenants.Add(tenant);
-            _context.Tenants.Add(tenant);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View("New");
         }
 
         public IActionResult Delete(int? id)
