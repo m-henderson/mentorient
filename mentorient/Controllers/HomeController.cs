@@ -23,7 +23,7 @@ namespace mentorient.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Mentorient Property Management";
 
             return View();
         }
