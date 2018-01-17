@@ -21,7 +21,7 @@ namespace mentorient.Models
         public string LastName { get; set; }
 
         [Phone]
-        public int? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DisplayName("Address")]
         [Required(ErrorMessage = "Address required")]
