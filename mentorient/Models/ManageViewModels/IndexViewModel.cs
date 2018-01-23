@@ -8,6 +8,12 @@ namespace mentorient.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

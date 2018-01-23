@@ -56,6 +56,8 @@ namespace mentorient.Controllers
 
             var model = new IndexViewModel
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Username = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
@@ -98,6 +100,17 @@ namespace mentorient.Controllers
                 if (!setPhoneResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                }
+            }
+
+            if (model.FirstName != user.FirstName || model.LastName != user.LastName)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                var updateUserResult = await _userManager.UpdateAsync(user);
+                if (!updateUserResult.Succeeded)
+                {
+                    throw new ApplicationException($"Unexpected error occurred setting first and last name for user with ID '{user.Id}'.");
                 }
             }
 
