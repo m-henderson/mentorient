@@ -105,14 +105,19 @@ namespace mentorient.Controllers
                 }
             }
 
-            if (model.FirstName != user.FirstName || model.LastName != user.LastName)
+            var firstNameChanged = model.FirstName != user.FirstName;
+
+            if (firstNameChanged || model.LastName != user.LastName)
             {
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
 
-                await _userManager.ReplaceClaimAsync(user, 
-                    User.FindFirst(c => c.Type == MentorientClaimTypes.FirstName), 
-                    new Claim(MentorientClaimTypes.FirstName, user.FirstName));
+                if (firstNameChanged)
+                {
+                    await _userManager.ReplaceClaimAsync(user,
+                            User.FindFirst(c => c.Type == MentorientClaimTypes.FirstName),
+                            new Claim(MentorientClaimTypes.FirstName, user.FirstName));
+                }
 
                 var updateUserResult = await _userManager.UpdateAsync(user);
                 if (!updateUserResult.Succeeded)
@@ -120,7 +125,10 @@ namespace mentorient.Controllers
                     throw new ApplicationException($"Unexpected error occurred setting first and last name for user with ID '{user.Id}'.");
                 }
 
-                await _signInManager.RefreshSignInAsync(user);
+                if (firstNameChanged)
+                {
+                    await _signInManager.RefreshSignInAsync(user);
+                }
             }
 
             StatusMessage = "Your profile has been updated";
