@@ -15,5 +15,8 @@ namespace mentorient.Models
 
         public ICollection<Entry> AccountingEntries { get; set; }
             = new List<Entry>();
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
