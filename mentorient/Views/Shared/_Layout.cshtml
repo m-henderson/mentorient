@@ -39,18 +39,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (SignInManager.IsSignedIn(User))
-                    {
+    {
 
-                        <li><a asp-area="" asp-controller="Tenants" asp-action="Index">Tenants</a></li>
-                        <li><a asp-area="" asp-controller="Accounting" asp-action="Index">Accounting</a></li>
-                    }
-                    else
-                    {
-
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index" class="glyphicon glyphicon-home"></a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    }
+                <li><a asp-area="" asp-controller="Tenants" asp-action="Index">Tenants</a></li>
+                <li><a asp-area="" asp-controller="Accounting" asp-action="Index">Accounting</a></li>
+}
+else
+{
+                <li> <a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+}
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
