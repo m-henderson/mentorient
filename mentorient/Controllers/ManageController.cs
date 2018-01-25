@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using mentorient.Models;
 using mentorient.Models.ManageViewModels;
 using mentorient.Services;
+using mentorient.Authorization;
+using System.Security.Claims;
 
 namespace mentorient.Controllers
 {
@@ -103,14 +105,29 @@ namespace mentorient.Controllers
                 }
             }
 
-            if (model.FirstName != user.FirstName || model.LastName != user.LastName)
+            var firstNameChanged = model.FirstName != user.FirstName;
+
+            if (firstNameChanged || model.LastName != user.LastName)
             {
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+
+                if (firstNameChanged)
+                {
+                    await _userManager.ReplaceClaimAsync(user,
+                            User.FindFirst(c => c.Type == MentorientClaimTypes.FirstName),
+                            new Claim(MentorientClaimTypes.FirstName, user.FirstName));
+                }
+
                 var updateUserResult = await _userManager.UpdateAsync(user);
                 if (!updateUserResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting first and last name for user with ID '{user.Id}'.");
+                }
+
+                if (firstNameChanged)
+                {
+                    await _signInManager.RefreshSignInAsync(user);
                 }
             }
 
