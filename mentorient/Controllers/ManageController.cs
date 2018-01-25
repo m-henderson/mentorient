@@ -114,9 +114,13 @@ namespace mentorient.Controllers
 
                 if (firstNameChanged)
                 {
-                    await _userManager.ReplaceClaimAsync(user,
+                    if (User.HasClaim(c => c.Type == MentorientClaimTypes.FirstName)) {
+                        await _userManager.ReplaceClaimAsync(user,
                             User.FindFirst(c => c.Type == MentorientClaimTypes.FirstName),
                             new Claim(MentorientClaimTypes.FirstName, user.FirstName));
+                    } else {
+                        await _userManager.AddClaimAsync(user, new Claim(MentorientClaimTypes.FirstName, user.FirstName));
+                    }
                 }
 
                 var updateUserResult = await _userManager.UpdateAsync(user);
