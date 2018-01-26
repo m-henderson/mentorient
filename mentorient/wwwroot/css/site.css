@@ -33,3 +33,14 @@
         display: none;
     }
 }
+
+.img-size-128 {
+    height: 128px;
+    width: 128px;
+}
+
+#box-shadow {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 5px 20px #888888;
+}
