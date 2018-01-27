@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  mentorient:
+    image: mentorient
+    build:
+      context: .
+      dockerfile: mentorient/Dockerfile
