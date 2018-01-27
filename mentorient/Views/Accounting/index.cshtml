@@ -14,7 +14,10 @@
 
 @if (!Model.Any())
 {
-    <p>oops.. you havn't created any accounting entries yet</p>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Hold Up!</strong> You havn't created any accounting entries yet.
+    </div>
 }
 else
 {
