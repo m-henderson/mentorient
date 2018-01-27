@@ -66,7 +66,9 @@ namespace mentorient.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contact);
+                var userId = _userManager.GetUserId(User);
+                _context.Users.Single(usr => usr.Id == userId).Contacts.Add(contact);
+                _context.Contacts.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
