@@ -23,10 +23,14 @@ namespace mentorient.Controllers
         }
 
         // GET: Contacts
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var userId = _userManager.GetUserId(User);
-            return View(await _context.Contacts.ToListAsync());
+            var contacts = _context.Users.Include(usr => usr.Contacts)
+                .Single(usr => usr.Id == userId)
+                .Contacts;
+
+            return View(contacts);
         }
 
         // GET: Contacts/Details/5
