@@ -7,21 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mentorient.Data;
 using mentorient.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace mentorient.Controllers
 {
     public class ContactsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public ContactsController(ApplicationDbContext context)
+        public ContactsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Contacts
         public async Task<IActionResult> Index()
         {
+            var userId = _userManager.GetUserId(User);
             return View(await _context.Contacts.ToListAsync());
         }
 
