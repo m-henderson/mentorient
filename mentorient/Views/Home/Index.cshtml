@@ -2,8 +2,87 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    .box-shadow {
+        border: 1px solid white;
+        margin: 20px auto;
+        padding: 10px;
+        box-shadow: 5px 5px 20px #888888;
+    }
 
-    
+    .box-size {
+        height: 80px;
+        /*border: 1px solid black;*/
+    }
+
+    .cust-quotes {
+        width: 640px;
+        height: 100px;
+        position: relative;
+    }
+
+    .cust-quotes blockquote {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        font-size: 14px;
+        text-align: center;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 0.5s ease-out 0s, transform 0.5s ease-in 0s;
+    }
+
+    /* IE < 10 fallback */
+    .no-csstransitions .cust-quotes blockquote,
+    .no-csstransforms .cust-quotes blockquote {
+        position: relative;
+    }
+
+    .cust-quotes blockquote:first-child {
+        opacity: 0;
+        transform: translateY(-10px) scale(1.1);
+    }
+
+    .cust-quotes blockquote:first-child + blockquote {
+        opacity: 1;
+        z-index: 1;
+        transition: opacity 1.6s ease 0s;
+    }
+
+    .cust-quotes blockquote p {
+        font-size: 24px;
+        font-weight: normal;
+        font-style: italic;
+        color: #353535;
+        line-height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .cust-quotes blockquote p:before {
+        content: '\201C';
+    }
+
+    .cust-quotes blockquote p:after {
+        content: '\201D';
+    }
+
+    .cust-quotes blockquote cite {
+        text-align: center;
+        font-size: 14px;
+        color: #898989;
+    }
+
+    .cust-quotes blockquote cite a {
+        font-size: 14px;
+        font-weight: normal;
+    }
+    #testimonials {
+        margin: 0 auto;
+        width: 940px;
+    }
+</style>
+
 <div id="homeCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -29,7 +108,7 @@
         </div>
 
         <div class="item">
-            <img src="~/images/image2.jpg" alt="Chicago" style="width:100%; height: 450px; ">
+            <img src="~/images/image2.jpg" alt="banner2" style="width:100%; height: 450px; ">
             <div class="carousel-caption">
                 <h1>Free Updates</h1>
                 <p>
@@ -42,7 +121,7 @@
         </div>
 
         <div class="item">
-            <img src="~/images/image3.jpg" alt="New York" style="width:100%; height: 450px;">
+            <img src="~/images/image3.jpg" alt="banner3" style="width:100%; height: 450px;">
             <div class="carousel-caption">
                 <h1>Community Driven</h1>
                 <p>
@@ -66,7 +145,9 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<br/>
+<br />
+
+<!--
 <div class="row">
     <div class="col-md-6">
         <blockquote>
@@ -81,64 +162,81 @@
         </blockquote>
     </div>
 </div>
-<div class="row">
+-->
+<div class="row" style="margin: 40px 0;">
     <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Free</h3>
-            </div>
-            <div class="panel-body">
-                Our Team set out to solve the issue of rental management applications being too exspensive. You get free software updates and it's free, so no price gouging.
-            </div>
+        <div class="text-center box-size">
+            <img src="~/images/icons8-money-box-50.png" />
+        </div>
+        <div class="panel-body box-shadow">
+            <p style="height: 100px;">
+                Our Team set out to solve the issue of rental management applications being too exspensive.
+                You get free software updates and it's free, so no price gouging.
+            </p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Powerful</h3>
-            </div>
-            <div class="panel-body">
-                Mentorient is a great solution for people in the rental business to boost production and manage tenants. We offer different types of features such as tenant management, accounting, and maintenace tools.
-            </div>
+        <div class="text-center box-size">
+            <img src="~/images/icons8-muscle-50.png" />
+        </div>
+        <div class="panel-body box-shadow">
+            <p style="height: 100px;">
+                Mentorient is a powerful application for people in the rental business to boost production and manage tenants.
+                We offer different types of features such as tenant management, accounting, and maintenace tools.
+            </p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Open Source</h3>
-            </div>
-            <div class="panel-body">
-                Mentorient is open-source and backed by dedicated software developers. We track issues, listen to users input, continue to evolve the applicaton into an easy one to use.
-            </div>
+        <div class="text-center box-size">
+            <img src="~/images/icons8-open-source-50.png" />
+        </div>
+        <div class="panel-body box-shadow">
+            <p style="height: 100px;">
+                Mentorient is open-source and backed by dedicated software developers.
+                We track issues, listen to users input, continue to evolve the applicaton into an easy one to use.
+            </p>
         </div>
     </div>
 </div>
-<footer class="home-index-footer">
-    <div class="row">
-        <div class="col-md-6">
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <label for="inputEmail" class="control-label">Email</label>
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="inputEmail" class="control-label">Name</label>
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Name">
-                        </div>
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <label for="inputEmail" class="control-label">Email</label>
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label for="textArea" class="control-label">Comment</label>
-                            <textarea class="form-control" rows="3" id="textArea"></textarea>
-                            <span class="help-block">Please send us a message, we would love to hear from you!</span>
-                            <button class="btn btn-info glyphicon glyphicon-send" style="width: 100px;"></button>
-                        </div> 
+                    <div class="col-sm-6">
+                        <label for="inputEmail" class="control-label">Name</label>
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Name">
                     </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>           
-</footer>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label for="textArea" class="control-label">Comment</label>
+                        <textarea class="form-control" rows="3" id="textArea"></textarea>
+                        <span class="help-block">Please send us a message, we would love to hear from you!</span>
+                        <button class="btn btn-info glyphicon glyphicon-send" style="width: 100px;"></button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <section id="testimonials" style="margin-top: 50px;">
+            
+            <div class="cust-quotes">
+                <blockquote data-timeout="6000">
+                    <p>Mentorient has made it easy for my team to manage my rental properties and tenants</p>
+                    <small>Alex Cole <cite title="Source Title"></cite></small>
+                </blockquote>
+                <blockquote data-timeout="6000">
+                    <p>Mentorient is great because it's in the cloud and I dont have to download any programs</p>
+                    <small>Michael Henderson<cite title="Source Title"></cite></small>
+                </blockquote>
+            </div>
+        </section>
+    </div>
+</div>
 

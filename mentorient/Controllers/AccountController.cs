@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using mentorient.Models;
 using mentorient.Models.AccountViewModels;
 using mentorient.Services;
+using mentorient.Authorization;
 
 namespace mentorient.Controllers
 {
@@ -235,6 +236,8 @@ namespace mentorient.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                    await _userManager.AddClaimAsync(user, new Claim(MentorientClaimTypes.FirstName, user.FirstName));
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
