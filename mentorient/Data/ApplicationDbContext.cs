@@ -18,7 +18,7 @@ namespace mentorient.Data
 
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Entry> Entries { get; set; }
-
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
