@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using mentorient.Models.Accounting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.KeyVault.Models;
 
 namespace mentorient.Models
 {
@@ -15,6 +16,9 @@ namespace mentorient.Models
 
         public ICollection<Entry> AccountingEntries { get; set; }
             = new List<Entry>();
+
+        public ICollection<Contact> Contacts { get; set; }
+            = new List<Contact>();
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

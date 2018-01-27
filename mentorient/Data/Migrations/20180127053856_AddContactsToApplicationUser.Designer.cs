@@ -11,8 +11,8 @@ using System;
 namespace mentorient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180123012117_AddFirstLastName")]
-    partial class AddFirstLastName
+    [Migration("20180127053856_AddContactsToApplicationUser")]
+    partial class AddContactsToApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,6 +108,70 @@ namespace mentorient.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("mentorient.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ContactId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("mentorient.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("Company");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("Website");
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("mentorient.Models.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ContactId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId");
+
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("mentorient.Models.Tenant", b =>
@@ -269,6 +333,27 @@ namespace mentorient.Data.Migrations
                         .WithMany("Entries")
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("mentorient.Models.City", b =>
+                {
+                    b.HasOne("mentorient.Models.Contact")
+                        .WithMany("Cities")
+                        .HasForeignKey("ContactId");
+                });
+
+            modelBuilder.Entity("mentorient.Models.Contact", b =>
+                {
+                    b.HasOne("mentorient.Models.ApplicationUser")
+                        .WithMany("Contacts")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("mentorient.Models.State", b =>
+                {
+                    b.HasOne("mentorient.Models.Contact")
+                        .WithMany("States")
+                        .HasForeignKey("ContactId");
                 });
 
             modelBuilder.Entity("mentorient.Models.Tenant", b =>
