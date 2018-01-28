@@ -7,22 +7,22 @@
 <h2>New</h2>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <form method="post" asp-action="Save" asp-controller="Tenants">
+        <form method="post" asp-action="Save" asp-controller="Tenants">s
             <div asp-validation-summary="All" class="text-Validation"></div>
             <div class="form-group">
                 <!--<div asp-validation-summary="All" class="text-danger"></div>-->
                 <div class="col-md-6">
-                    <label asp-for="TenantFirstName" class="control-label"></label>
+                    <label asp-for="FirstName" class="control-label"></label>
                     <div class="">
-                        <input asp-for="TenantFirstName" class="form-control" placeholder="tenants first name" />
-                        <span asp-validation-for="TenantFirstName" class="text-danger"></span>
+                        <input asp-for="FirstName" class="form-control" placeholder="tenants first name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label asp-for="TenantLastName" class="control-label"></label>
+                    <label asp-for="LastName" class="control-label"></label>
                     <div class="">
-                        <input asp-for="TenantLastName" class="form-control" placeholder="tenants last name" />
-                        <span asp-validation-for="TenantLastName" class="text-danger"></span>
+                        <input asp-for="LastName" class="form-control" placeholder="tenants last name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
             </div>

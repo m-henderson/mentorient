@@ -14,11 +14,11 @@ namespace mentorient.Models
 
         [DisplayName("First Name")]
         [Required(ErrorMessage = "First name required")]
-        public string TenantFirstName { get; set; }
+        public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
         [Required(ErrorMessage = "Last name required")]
-        public string TenantLastName { get; set; }
+        public string LastName { get; set; }
 
         [Phone]
         public string PhoneNumber { get; set; }

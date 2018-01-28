@@ -44,7 +44,7 @@ namespace mentorient.Controllers
             vm.Tenants = tenants.Select(a => new SelectListItem()
                 {
                     Value = a.Id.ToString(),
-                    Text = a.TenantFirstName + " " + a.TenantLastName
+                    Text = a.FirstName + " " + a.LastName
                 })
                 .ToList();
             return View(vm);
@@ -56,7 +56,7 @@ namespace mentorient.Controllers
             var userId = _userManager.GetUserId(User);
             var tenantId = accountingEntry.TenantId;
             var tenant = _context.Tenants.SingleOrDefault(t => t.Id == tenantId);
-            var tenantName = tenant.TenantFirstName + " " + tenant.TenantLastName;
+            var tenantName = tenant.FirstName + " " + tenant.LastName;
             accountingEntry.TenantName = tenantName;
 
             _context.Users.Single(usr => usr.Id == userId).AccountingEntries.Add(accountingEntry);
