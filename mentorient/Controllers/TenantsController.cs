@@ -36,7 +36,7 @@ namespace mentorient.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                tenants = tenants.Where(t => t.TenantFirstName.Contains(searchString)).ToList();
+                tenants = tenants.Where(t => t.FirstName.Contains(searchString)).ToList();
             }
             
             return View(tenants);
