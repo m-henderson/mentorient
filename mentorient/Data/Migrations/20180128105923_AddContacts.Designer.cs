@@ -11,8 +11,8 @@ using System;
 namespace mentorient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180127051946_AddContactModel")]
-    partial class AddContactModel
+    [Migration("20180128105923_AddContacts")]
+    partial class AddContacts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,6 +133,8 @@ namespace mentorient.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<string>("Company");
 
                     b.Property<string>("Email");
@@ -150,6 +152,8 @@ namespace mentorient.Data.Migrations
                     b.Property<string>("ZipCode");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Contacts");
                 });
@@ -336,6 +340,13 @@ namespace mentorient.Data.Migrations
                     b.HasOne("mentorient.Models.Contact")
                         .WithMany("Cities")
                         .HasForeignKey("ContactId");
+                });
+
+            modelBuilder.Entity("mentorient.Models.Contact", b =>
+                {
+                    b.HasOne("mentorient.Models.ApplicationUser")
+                        .WithMany("Contacts")
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("mentorient.Models.State", b =>

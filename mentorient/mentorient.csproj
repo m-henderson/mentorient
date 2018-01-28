@@ -15,10 +15,6 @@
     <Compile Remove="Data\Migrations\20180113082809_CLean.Designer.cs" />
     <Compile Remove="Data\Migrations\20180113082950_AddTenantsTo.cs" />
     <Compile Remove="Data\Migrations\20180113082950_AddTenantsTo.Designer.cs" />
-    <Compile Remove="Data\Migrations\20180123012117_AddFirstLastName.cs" />
-    <Compile Remove="Data\Migrations\20180123012117_AddFirstLastName.Designer.cs" />
-    <Compile Remove="Data\Migrations\20180127051853_AddContactModel.cs" />
-    <Compile Remove="Data\Migrations\20180127051853_AddContactModel.Designer.cs" />
   </ItemGroup>
 
 
