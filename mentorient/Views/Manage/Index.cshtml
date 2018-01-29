@@ -8,7 +8,7 @@
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
     <div class="col-md-6">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName"></label>
@@ -44,6 +44,10 @@
                 <label asp-for="PhoneNumber"></label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfileImage"></label>
+                <input type="file" asp-for="ProfileImage" class="" accept=".png,.jpg,.jpeg" />
             </div>
             <button type="submit" class="btn btn-default">Save</button>
         </form>

@@ -14,6 +14,8 @@ using mentorient.Models;
 using mentorient.Models.AccountViewModels;
 using mentorient.Services;
 using mentorient.Authorization;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace mentorient.Controllers
 {
@@ -25,17 +27,21 @@ namespace mentorient.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly IHostingEnvironment _environment;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IHostingEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _environment = environment;
+
         }
 
         [TempData]
@@ -444,6 +450,26 @@ namespace mentorient.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+      
+        [HttpGet]
+        public async Task<FileContentResult> UserProfileImage()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser.ProfileImage==null) // return deafult profile image
+            {   
+                string deafultProfileImagePath = Path.Combine(_environment.WebRootPath, "images","default-userimage.png");
+
+                byte[] imageData = null;
+                FileInfo defaultProfileImage = new FileInfo(deafultProfileImagePath);
+                FileStream fileStream = new FileStream(deafultProfileImagePath, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fileStream);
+                imageData = br.ReadBytes((int)defaultProfileImage.Length);
+
+                return File(imageData, "image/png");
+            }
+            return new FileContentResult(currentUser.ProfileImage, "image/jpeg");
         }
 
         #region Helpers

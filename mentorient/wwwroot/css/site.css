@@ -44,3 +44,15 @@
     padding: 10px;
     box-shadow: 5px 5px 20px #888888;
 }
+
+/* proper display for user profile image next to navbar links */
+.navbar-inverse .navbar-right > li > a {
+    display: inline-block;
+}
+
+
+#user-image {
+    height: 50px;
+    width: 50px;
+    vertical-align:top;
+}

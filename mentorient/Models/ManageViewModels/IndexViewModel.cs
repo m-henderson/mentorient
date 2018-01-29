@@ -27,5 +27,9 @@ namespace mentorient.Models.ManageViewModels
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
+
+        [Display(Name = "Profile Image")]
+        public byte[] ProfileImage { get; set; }
+
     }
 }
