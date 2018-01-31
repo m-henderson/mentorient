@@ -15,6 +15,8 @@ using mentorient.Models.ManageViewModels;
 using mentorient.Services;
 using mentorient.Authorization;
 using System.Security.Claims;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace mentorient.Controllers
 {
@@ -134,6 +136,25 @@ namespace mentorient.Controllers
                     await _signInManager.RefreshSignInAsync(user);
                 }
             }
+
+            byte[] imageData = null;
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile profileImageFile = Request.Form.Files["ProfileImage"];
+
+                using (var binary = new BinaryReader(profileImageFile.OpenReadStream()))
+                {
+                    imageData = binary.ReadBytes((int)profileImageFile.Length);
+                }
+
+                user.ProfileImage = imageData;
+                var updateUserResult = await _userManager.UpdateAsync(user);
+                if (!updateUserResult.Succeeded)
+                {
+                    throw new ApplicationException($"Unexpected error occurred setting profile image for user with ID '{user.Id}'.");
+                }
+            }
+            
 
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));

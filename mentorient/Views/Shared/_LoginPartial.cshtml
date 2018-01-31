@@ -10,6 +10,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <img id="user-image" src="@Url.Action("UserProfileImage", "Account" )" />
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @(User.GetFirstName() ?? UserManager.GetUserName(User))!</a>
             </li>
             <li>
