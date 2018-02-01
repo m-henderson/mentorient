@@ -10,7 +10,7 @@
         <a asp-controller="Tenants" asp-action="New">New Tenant</a>
     <hr/>
 </nav>
-@if (!Model.Any())
+@if (!Model.Any() && ViewData["Message"] == null)
 {
     <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -26,26 +26,30 @@ else
         </p>
     </form>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Options</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var tenant in Model)
-        {
+    if (ViewData["Message"] == null)
+    {
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td>@tenant.Id</td>
-                <td>@tenant.FirstName  @tenant.LastName</td>    
-                <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a> | <a asp-action="Details" asp-route-id="@tenant.Id">Details</a></td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Options</th>
             </tr>
-                    
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var tenant in Model)
+            {
+                <tr>
+                    <td>@tenant.Id</td>
+                    <td>@tenant.FirstName  @tenant.LastName</td>    
+                    <td><a asp-action="Delete" asp-route-id="@tenant.Id">Delete</a> | <a asp-action="Details" asp-route-id="@tenant.Id">Details</a></td>
+                </tr>  
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @ViewData["Message"].ToString();
+    }
 }
-
-    
