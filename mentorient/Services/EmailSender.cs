@@ -14,23 +14,19 @@ namespace mentorient.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
-        {
-            Options = optionsAccessor.Value;
-        }
-
-        public AuthMessageSenderOptions Options { get; } // set only via Secret Manager
+ 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+            return Execute(apiKey, subject, message, email);
         }
 
-        public Task Execute(string apiKey, string subject, string message, string email)
+         public Task Execute(string apiKey, string subject, string message, string email)
         {
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("no-reply@mentorient.com", "Michael Henderson"),
+                From = new EmailAddress("no-reply@mentorient.com", "Mentorient Admin"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
