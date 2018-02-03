@@ -21,7 +21,7 @@ namespace mentorient.Services
             return Execute(apiKey, subject, message, email);
         }
 
-        public Task Execute(string apiKey, string subject, string message, string email)
+         public Task Execute(string apiKey, string subject, string message, string email)
         {
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
