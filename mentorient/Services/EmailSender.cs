@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -13,16 +14,17 @@ namespace mentorient.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, IConfiguration configuration)
         {
             Options = optionsAccessor.Value;
+            Configuration = configuration;
         }
 
         public AuthMessageSenderOptions Options { get; } // set only via Secret Manager
-
+        public IConfiguration Configuration { get; set; }
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            return Execute(Configuration.GetConnectionString("SendGridKey"), subject, message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
