@@ -36,9 +36,13 @@ namespace mentorient.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                tenants = tenants.Where(t => t.FirstName.Contains(searchString)).ToList();
+                tenants = tenants.Where(t => t.FirstName.IndexOf(searchString, StringComparison.CurrentCultureIgnoreCase) >= 0
+                                || t.LastName.IndexOf(searchString, StringComparison.CurrentCultureIgnoreCase) >= 0).ToList();
+                if (!tenants.Any())
+                {
+                    ViewData["Message"] = "No tenants found.";
+                }
             }
-            
             return View(tenants);
         }
 
