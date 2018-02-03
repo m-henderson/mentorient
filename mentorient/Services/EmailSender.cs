@@ -20,7 +20,6 @@ namespace mentorient.Services
         }
 
         public AuthMessageSenderOptions Options { get; } // set only via Secret Manager
-        public IConfiguration Configuration { get; set; }
         public Task SendEmailAsync(string email, string subject, string message)
         {
             return Execute(Options.SendGridKey, subject, message, email);
