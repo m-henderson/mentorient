@@ -14,17 +14,15 @@ namespace mentorient.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor, IConfiguration configuration)
+        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {
             Options = optionsAccessor.Value;
-            Configuration = configuration;
         }
 
         public AuthMessageSenderOptions Options { get; } // set only via Secret Manager
-        public IConfiguration Configuration { get; set; }
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Configuration.GetConnectionString("SendGridKey"), subject, message, email);
+            return Execute(Options.SendGridKey, subject, message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
