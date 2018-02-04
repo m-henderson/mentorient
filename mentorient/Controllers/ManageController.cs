@@ -137,11 +137,12 @@ namespace mentorient.Controllers
                 }
             }
 
-            byte[] imageData = null;
-            if (Request.Form.Files.Count > 0)
+            
+            //update user profile image
+            IFormFile profileImageFile = Request.Form.Files["ProfileImage"];
+            if (profileImageFile.Length > 0) //check if user selected any file file to upload
             {
-                IFormFile profileImageFile = Request.Form.Files["ProfileImage"];
-
+                byte[] imageData = null;
                 using (var binary = new BinaryReader(profileImageFile.OpenReadStream()))
                 {
                     imageData = binary.ReadBytes((int)profileImageFile.Length);
@@ -154,6 +155,7 @@ namespace mentorient.Controllers
                     throw new ApplicationException($"Unexpected error occurred setting profile image for user with ID '{user.Id}'.");
                 }
             }
+            
             
 
             StatusMessage = "Your profile has been updated";
