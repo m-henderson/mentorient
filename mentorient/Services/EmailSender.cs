@@ -17,7 +17,7 @@ namespace mentorient.Services
  
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+            var apiKey = "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";
             return Execute(apiKey, subject, message, email);
         }
 
