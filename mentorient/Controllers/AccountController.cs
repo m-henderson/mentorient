@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using mentorient.Authorization;
 using mentorient.Models;
 using mentorient.Models.AccountViewModels;
 using mentorient.Services;
-using mentorient.Authorization;
-using System.IO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace mentorient.Controllers
 {
-    [Authorize]
+   [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -32,22 +24,19 @@ namespace mentorient.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly IHostingEnvironment _environment;
-        private readonly IConfiguration _config;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            IHostingEnvironment environment,
-            IConfiguration config)
+            IHostingEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _environment = environment;
-            _config = config;
         }
 
         [TempData]
