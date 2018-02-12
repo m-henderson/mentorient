@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using mentorient.Data;
+﻿using mentorient.Data;
 using mentorient.Models;
 using mentorient.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -40,7 +34,6 @@ namespace mentorient
              .AddEntityFrameworkStores<ApplicationDbContext>()
              .AddDefaultTokenProviders();
 
-         // Enable Dual Authentication 
          services.AddAuthentication()
            .AddCookie(cfg => cfg.SlidingExpiration = true)
            .AddJwtBearer(cfg =>
@@ -59,13 +52,7 @@ namespace mentorient
          // Add application services.
          services.AddTransient<IEmailSender, EmailSender>();
 
-         services.AddMvc(config =>
-         {
-            // var policy = new AuthorizationPolicyBuilder()
-            //                        .RequireAuthenticatedUser()
-            //                        .Build();
-            // config.Filters.Add(new AuthorizeFilter(policy));
-         });
+         services.AddMvc();
 
          services.Configure<AuthMessageSenderOptions>(Configuration);
       }
