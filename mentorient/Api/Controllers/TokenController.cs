@@ -46,9 +46,9 @@ namespace mentorient.Api.Controllers
                {
                   var claims = new[]
                   {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        }.Union(User.Claims);
+                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                  }.Union(User.Claims);
 
                   var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
                   var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
