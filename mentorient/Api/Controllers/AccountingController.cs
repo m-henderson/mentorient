@@ -6,7 +6,7 @@ namespace mentorient.Api.Controllers
 {
    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
    [Produces("application/json")]
-   [Route("api/Accounting")]
+   [Route("api/[controller]")]
    public class AccountingController : Controller
    {
       [HttpGet]
