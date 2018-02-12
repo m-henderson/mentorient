@@ -16,6 +16,10 @@ using mentorient.Services;
 using mentorient.Authorization;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace mentorient.Controllers
 {
@@ -28,20 +32,22 @@ namespace mentorient.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly IHostingEnvironment _environment;
+        private readonly IConfiguration _config;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            IHostingEnvironment environment)
+            IHostingEnvironment environment,
+            IConfiguration config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _environment = environment;
-
+            _config = config;
         }
 
         [TempData]
@@ -481,6 +487,44 @@ namespace mentorient.Controllers
                 return File(imageData, "image/png");
             }
             return new FileContentResult(currentUser.ProfileImage, "image/jpeg");
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> GenerateToken([FromBody] LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                if (user != null)
+                {
+                    var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+                    if (result.Succeeded)
+                    {
+
+                        var claims = new[]
+                        {
+                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        }.Union(User.Claims);
+
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+                        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                        var token = new JwtSecurityToken(
+                            _config["Tokens:Issuer"],
+                            _config["Tokens:Issuer"],
+                            claims,
+                            expires: DateTime.Now.AddDays(1),
+                            signingCredentials: credentials);
+
+                        return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+                    }
+                }
+            }
+
+            return BadRequest("Could not create token");
         }
 
         #region Helpers
