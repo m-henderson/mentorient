@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using mentorient.Authorization;
 using mentorient.Models;
 using mentorient.Models.AccountViewModels;
 using mentorient.Services;
-using mentorient.Authorization;
-using System.IO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace mentorient.Controllers
 {
-    [Authorize]
+   [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -41,7 +37,6 @@ namespace mentorient.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _environment = environment;
-
         }
 
         [TempData]

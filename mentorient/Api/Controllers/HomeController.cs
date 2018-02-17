@@ -5,7 +5,7 @@ namespace mentorient.Api.Controllers
 {
    [AllowAnonymous]
    [Produces("application/json")]
-   [Route("api/Home")]
+   [Route("api/[controller]")]
    public class HomeController : Controller
    {
       [HttpGet]
