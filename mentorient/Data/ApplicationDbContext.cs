@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using mentorient.Models;
 using mentorient.Models.Accounting;
+using mentorient.Models.Exchange;
 
 namespace mentorient.Data
 {
@@ -19,6 +20,8 @@ namespace mentorient.Data
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Entry> Entries { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<Ad> Ads {get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
