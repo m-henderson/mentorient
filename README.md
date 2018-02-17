@@ -1,3 +1,4 @@
+<a href="https://cla-assistant.io/mentorient/mentorient"><img src="https://cla-assistant.io/readme/badge/mentorient/mentorient" alt="CLA assistant" /></a>
 # Mentorient
 a web applicataion for landlords to manage tenants, properties, and parts. 
 
